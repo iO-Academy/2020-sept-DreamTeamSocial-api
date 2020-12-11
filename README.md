@@ -1,2 +1,2 @@
-# year-cohort-projectName
+# 2020-sept-DreamTeamSocial-api
 project template repo
