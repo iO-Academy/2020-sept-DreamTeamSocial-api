@@ -9,7 +9,6 @@ module.exports = function(passport) {
             getDbConnection();
             User.findOne({username: username}, (err,user) => {
                 if(err) throw err;
-                //these messages aren't returning so something is missing. Think it's flash error.
                 if(!user){
                     return done(null, false);
                 }
@@ -20,7 +19,6 @@ module.exports = function(passport) {
                     if(result) {
                         return done(null, user);
                     } else {
-                        //these messages aren't returning so something is missing. Think it's flash error.
                         return done(null, false);
                     }
                 });
