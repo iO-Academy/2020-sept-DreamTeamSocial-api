@@ -1,30 +1,41 @@
 const passport = require('passport');
 require('../../passportConfig')(passport);
+const getDbConnection = require("../../dbConnection");
 
 function login(req, res, next) {
+    getDbConnection();
     //'local' just point the authenticate function at our local method
     passport.authenticate('local', (err,user,info) => {
         if(err) {
             return res.status(500).json({
-                message: 'Ooops something happend'
+                success: false,
+                message: 'Ooops something happened',
+                info: ''
             })
         }
         if(!user) {
             return res.json({
-                message: "No User exists"
+                success: false,
+                message: "No User exists",
+                info: ''
             });
         }
         //persistent login
         req.logIn(user, err => {
             if(err) {
-                return res.status(500).json({
-                    message: 'Ooops something happend'
+                return res.status(400).json({
+                    success: false,
+                    message: 'Ooops something happened',
+                    info: ''
                 });
             }
-            return res.json({username: user.username, email: user.email || '', bio: user.bio || '', isAuthenticated: true});
+            return res.json({
+                success: true,
+                message: 'User Authenticated',
+                info: {username: user.username, email: user.email || '', bio: user.bio || '', isAuthenticated: true}
+            });
         })
     })(req,res,next);
-    //Don't really get what the next function thing does, but you need it to make it work
 };
 
 module.exports = login;
