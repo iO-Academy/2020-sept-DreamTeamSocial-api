@@ -4,7 +4,6 @@ const getDbConnection = require("../../dbConnection");
 
 function login(req, res, next) {
     getDbConnection();
-    //'local' just point the authenticate function at our local method
     passport.authenticate('local', (err,user,info) => {
         if(err) {
             return res.status(500).json({
@@ -20,6 +19,7 @@ function login(req, res, next) {
                 info: ''
             });
         }
+        
         //persistent login
         req.logIn(user, err => {
             if(err) {

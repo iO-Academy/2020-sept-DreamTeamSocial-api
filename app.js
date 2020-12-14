@@ -38,7 +38,6 @@ app.post("/user/login", loginController);
 
 
 app.get("/getUser", ((req, res) => {
-    //req.user contains the username of the currently logged in user.
     res.send(req.user);
 }));
 

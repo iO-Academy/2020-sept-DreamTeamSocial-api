@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const localStrategy = require('passport-local').Strategy;
 const getDbConnection = require('./dbConnection/');
 
-//This defines our local strategy for authenticating users
 module.exports = function(passport) {
     passport.use(
         new localStrategy((username, password, done) => {
@@ -28,13 +27,10 @@ module.exports = function(passport) {
             });
         })
     )
-    //Takes the id of the user and serialises, stores it as a cookie on the user device
     passport.serializeUser((user,cb) => {
         cb(null, user.id);
     })
 
-    //ANY HTTP REQUEST FIRST GOES THROUGH THIS TO SEE IF THE IT CAN IDENTIFY THE COOKIE
-    //It also makes the logged in user available in any request object using req.user
     passport.deserializeUser((id,cb) => {
         User.findOne({_id: id}, (err, user) => {
             const userInformation = {
