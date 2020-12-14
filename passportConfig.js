@@ -1,11 +1,13 @@
 const User = require('./models/user');
 const bcrypt = require('bcryptjs');
 const localStrategy = require('passport-local').Strategy;
+const getDbConnection = require('./dbConnection/');
 
 //This defines our local strategy for authenticating users
 module.exports = function(passport) {
     passport.use(
         new localStrategy((username, password, done) => {
+            getDbConnection();
             User.findOne({username: username}, (err,user) => {
                 if(err) throw err;
                 //these messages aren't returning so something is missing. Think it's flash error.
