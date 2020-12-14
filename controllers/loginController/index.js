@@ -19,7 +19,7 @@ function login(req, res, next) {
                 info: ''
             });
         }
-        
+
         //persistent login
         req.logIn(user, err => {
             if(err) {
