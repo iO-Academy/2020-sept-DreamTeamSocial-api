@@ -11,9 +11,13 @@ module.exports = function(passport) {
             User.findOne({username: username}, (err,user) => {
                 if(err) throw err;
                 //these messages aren't returning so something is missing. Think it's flash error.
-                if(!user) return done(null, false);
+                if(!user){
+                    return done(null, false);
+                }
                 bcrypt.compare(password, user.password, (err, result) => {
-                    if(err) throw err;
+                    if(err) {
+                        throw err;
+                    }
                     if(result) {
                         return done(null, user);
                     } else {

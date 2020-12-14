@@ -23,4 +23,4 @@ const User = new mongoose.Schema({
     }
 });
 //"users" is what's pointing this model at the users collection.
-module.exports = mongoose.model("users", User);
+module.exports = mongoose.model("users", User, 'users');
