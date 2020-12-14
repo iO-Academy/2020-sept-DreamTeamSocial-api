@@ -24,13 +24,21 @@ function register(req, res) {
         }
         if(!document) {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
-            const newUser = new User({
-                username: req.body.username,
-                password: hashedPassword,
-                email: req.body.email || '',
-                bio: req.body.bio || ''
-            })
-            await newUser.save();
+            try {
+                const newUser = new User({
+                    username: req.body.username,
+                    password: hashedPassword,
+                    email: req.body.email || '',
+                    bio: req.body.bio || ''
+                })
+                await newUser.save();
+            } catch (error) {
+                res.status(500).json({
+                    success: false,
+                    message: 'Database Failure ' + error,
+                    info: ''
+                });
+            }
             res.json({
                 success: true,
                 message: 'User Created',
