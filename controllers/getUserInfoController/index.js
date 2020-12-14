@@ -1,11 +1,13 @@
-const User = require('./models/user');
+const User = require('../../models/user.js');
 const getDbConnection = require("../../dbConnection");
 
 async function getUserInfo(req, res) {
-    const connection = await getDbConnection();
-    const db = connection.db('Users');
-    let user = User.findOne({username: req.name})
-    console.log(user);
+    getDbConnection();
+    User.findOne({username: req.params.user}, (err, user) => {
+        console.log(user)
+        return res.json({success: true, message: 'got user info', info: {username: user.username,  bio: user.bio || ''}});
+    } )
+
 }
 
 module.exports = getUserInfo;
