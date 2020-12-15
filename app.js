@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors({
-    origin: "http://localhost:3000", // change to location of react app
+    origin: "*", // change to location of react app
     credentials: true
 }))
 
