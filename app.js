@@ -33,13 +33,14 @@ app.use(passport.session());
 require('./passportConfig')(passport);
 const loginController = require('./controllers/loginController');
 const registerController = require('./controllers/registerController');
+const getUserInfoController = require("./controllers/getUserInfoController");
+const getLoggedInController = require("./controllers/getLoggedInController");
+
+
 app.post("/user", registerController);
 app.post("/user/login", loginController);
-
-
-app.get("/getUser", ((req, res) => {
-    res.send(req.user);
-}));
+app.get("/user/loggedIn", getLoggedInController);
+app.get("/user/:user", getUserInfoController);
 
 
 
