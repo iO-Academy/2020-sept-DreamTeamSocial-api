@@ -6,16 +6,16 @@ function login(req, res, next) {
     getDbConnection();
     passport.authenticate('local', (err,user,info) => {
         if(err) {
-            return res.status(500).json({
+            return res.json({
                 success: false,
-                message: 'Ooops something happened',
+                message: 'Database failure',
                 info: ''
             })
         }
         if(!user) {
             return res.json({
                 success: false,
-                message: "No User exists",
+                message: "Username or Password is incorrect.",
                 info: ''
             });
         }
@@ -23,7 +23,7 @@ function login(req, res, next) {
         //persistent login creates a session on the users device
         req.logIn(user, err => {
             if(err) {
-                return res.status(400).json({
+                return res.json({
                     success: false,
                     message: 'Ooops something happened',
                     info: ''

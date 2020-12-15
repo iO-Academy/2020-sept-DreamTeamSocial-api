@@ -9,14 +9,14 @@ function register(req, res) {
     //Validate the request here before running query of DB
     User.findOne({username: req.body.username}, async (err,document) => {
         if(err) {
-            res.status(500).json({
+            res.json({
                 success: false,
                 message: 'Database Failure',
                 info: ''
             });
         }
         if(document) {
-            res.status(400).json({
+            res.json({
                 success: false,
                 message: 'User Exists',
                 info: ''
