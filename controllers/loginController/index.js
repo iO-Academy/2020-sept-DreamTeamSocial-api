@@ -20,7 +20,7 @@ function login(req, res, next) {
             });
         }
 
-        //persistent login
+        //persistent login creates a session on the users device
         req.logIn(user, err => {
             if(err) {
                 return res.status(400).json({

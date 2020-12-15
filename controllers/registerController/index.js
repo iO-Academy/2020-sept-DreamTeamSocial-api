@@ -35,7 +35,7 @@ function register(req, res) {
             } catch (error) {
                 res.status(500).json({
                     success: false,
-                    message: 'Database Failure ' + error,
+                    message: 'Database Failure',
                     info: ''
                 });
             }

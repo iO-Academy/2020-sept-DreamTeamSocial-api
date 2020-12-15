@@ -1,4 +1,4 @@
-async function getLoggedInUser(req, res) {
+function getLoggedInUser(req, res) {
     if(req.user) {
         return res.json({
             success: true,
@@ -6,7 +6,7 @@ async function getLoggedInUser(req, res) {
             info: req.user
         })
     } else {
-        return res.status(400).json({
+        return res.json({
             success: false,
             message: "User not logged in",
             info: ''
