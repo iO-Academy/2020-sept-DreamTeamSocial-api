@@ -6,7 +6,7 @@ async function addNewTil(req, res) {
     // const Til = new Til;
     Til.create({username: req.body.username, tilPost: req.body.tilPost}, async (err, Til) => {
         if (err) {
-            return res.json(err)
+            return res.status(500).json({success: false, message: 'error', info: ''});
         } else {
             return res.json({success: true, message: 'got til post info', info: ''});
         }
