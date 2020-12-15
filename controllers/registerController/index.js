@@ -18,7 +18,7 @@ function register(req, res) {
         if(document) {
             res.json({
                 success: false,
-                message: 'User Exists',
+                message: 'User already exists',
                 info: ''
             });
         }
