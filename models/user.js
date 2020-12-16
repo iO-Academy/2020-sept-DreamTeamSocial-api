@@ -22,6 +22,11 @@ const User = new mongoose.Schema({
         type: String,
         required: false,
         maxLength: 500
+    },
+    following: {
+        type: Array,
+        required: true,
+        default: ""
     }
 });
 

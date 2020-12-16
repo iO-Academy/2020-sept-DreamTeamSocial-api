@@ -11,7 +11,7 @@ async function getUserInfo(req, res) {
                 return res.json({
                     success: true,
                     message: 'got user info',
-                    info: {username: user.username, bio: user.bio || ''}
+                    info: {username: user.username, bio: user.bio || '', following: user.following}
                 });
             }
         })
