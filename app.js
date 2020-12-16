@@ -36,6 +36,7 @@ const registerController = require('./controllers/registerController');
 const getUserInfoController = require("./controllers/getUserInfoController");
 const getLoggedInUserController = require("./controllers/getLoggedInController");
 const addNewTilController = require("./controllers/addNewTilController");
+const getFollowingTilsController = require("./controllers/getFollowingTilsController");
 const getTilsController = require("./controllers/getTilsController");
 const toggleFollowingController = require("./controllers/toggleFollowingController");
 
@@ -45,6 +46,7 @@ app.post("/user/login", loginController);
 app.get("/user/loggedIn", getLoggedInUserController);
 app.get("/user/:user", getUserInfoController);
 app.post("/til", addNewTilController);
+app.get("/til", getFollowingTilsController)
 app.get("/til/:user", getTilsController)
 app.put("/user/:user", toggleFollowingController);
 
