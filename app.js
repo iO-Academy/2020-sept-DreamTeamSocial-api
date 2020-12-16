@@ -35,14 +35,18 @@ const loginController = require('./controllers/loginController');
 const registerController = require('./controllers/registerController');
 const getUserInfoController = require("./controllers/getUserInfoController");
 const getLoggedInUserController = require("./controllers/getLoggedInController");
+const addNewTilController = require("./controllers/addNewTilController");
+const getTilsController = require("./controllers/getTilsController");
+const toggleFollowingController = require("./controllers/toggleFollowingController");
 
 
 app.post("/user", registerController);
 app.post("/user/login", loginController);
 app.get("/user/loggedIn", getLoggedInUserController);
 app.get("/user/:user", getUserInfoController);
-
-
+app.post("/til", addNewTilController);
+app.get("/til/:user", getTilsController)
+app.put("/user/:user", toggleFollowingController);
 
 //Start Server
 app.listen(3001, () => {
