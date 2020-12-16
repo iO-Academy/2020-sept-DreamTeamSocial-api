@@ -8,7 +8,6 @@ async function toggleFollowing(req, res) {
             if (err) {
                 return res.status(500).json({success: false, message: 'error', info: ''});
             } else {
-                console.log(user[0])
                 const following = user[0].following;
                 if (following.includes(req.query.user2)) {
                     User.updateOne({username: req.params.user}, {"$pullAll": {"following": [req.query.user2]}}, async (err, user) => {

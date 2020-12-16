@@ -47,7 +47,6 @@ app.get("/user/:user", getUserInfoController);
 app.post("/til", addNewTilController);
 app.get("/til/:user", getTilsController)
 app.put("/user/:user", toggleFollowingController);
-app.get("/user")
 
 //Start Server
 app.listen(3001, () => {
