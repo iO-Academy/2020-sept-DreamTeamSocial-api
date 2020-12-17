@@ -32,6 +32,7 @@ app.use(passport.session());
 //Routes
 require('./passportConfig')(passport);
 const loginController = require('./controllers/loginController');
+const logoutController = require('./controllers/logoutController');
 const registerController = require('./controllers/registerController');
 const getUserInfoController = require("./controllers/getUserInfoController");
 const getLoggedInUserController = require("./controllers/getLoggedInController");
@@ -43,6 +44,7 @@ const toggleFollowingController = require("./controllers/toggleFollowingControll
 
 app.post("/user", registerController);
 app.post("/user/login", loginController);
+app.post("/user/logout", logoutController);
 app.get("/user/loggedIn", getLoggedInUserController);
 app.get("/user/:user", getUserInfoController);
 app.post("/til", addNewTilController);
