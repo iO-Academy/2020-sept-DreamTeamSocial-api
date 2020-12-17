@@ -5,9 +5,14 @@ const mongoose = require('mongoose');
 async function getTils(req, res) {
     if (req.user) {
         getDbConnection();
-        const query = mongoose.Types.ObjectId(req.query.id);
+        let query = req.query.id;
         if (query) {
-            Til.find({username: req.params.user, _id: query}, (err, tils) => {
+            try {
+                query = mongoose.Types.ObjectId(query);
+            } catch {
+                return res.status(400).json({success: false, message: 'Til does not exist', info: ''});
+            }
+            Til.find({_id: query}, (err, tils) => {
                 if (err) {
                     return res.status(500).json({success: false, message: 'error', info: ''});
                 } else {
@@ -18,6 +23,9 @@ async function getTils(req, res) {
             Til.find({username: req.params.user}, (err, tils) => {
                 if (err) {
                     return res.status(500).json({success: false, message: 'error', info: ''});
+                }
+                if (!tils) {
+                    return res.status(500).json({success: false, message: 'User does not exist', info: ''});
                 } else {
                     return res.json({success: true, message: 'got til info', info: tils});
                 }
