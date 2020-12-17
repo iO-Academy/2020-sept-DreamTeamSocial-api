@@ -2,8 +2,12 @@ const passport = require('passport');
 require('../../passportConfig')(passport);
 
 function logOut(req, res){
-    //Send a response to the front end to clear local storage and redirect to login page.
-    req.logout();
+    if (req.user) {
+        req.logout();
+        res.json({success: true, message: 'Logged User Out', info: ''})
+    } else {
+        res.status(400).json({success: false, message: 'User not logged in', info: ''})
+    }
 };
 
 module.exports = logOut;
